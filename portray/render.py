@@ -169,7 +169,7 @@ def documentation_in_temp_folder(config: dict) -> Iterator[Tuple[str, str]]:
 
 
 def _mkdocs_config(config: dict) -> mkdocs_config.Config:
-    config_instance = mkdocs_config.Config(schema=mkdocs_config.DEFAULT_SCHEMA)
+    config_instance = mkdocs_config.Config(schema=mkdocs.config.defaults.get_schema())
     config_instance.load_dict(config)
 
     errors, warnings = config_instance.validate()
