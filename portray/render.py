@@ -15,6 +15,7 @@ from mkdocs.commands.build import build as mkdocs_build
 from mkdocs.utils import is_markdown_file
 from pdocs import as_markdown as pdocs_as_markdown
 from yaspin import yaspin
+from mkdocs.config.defaults import get_schema as mkdocs_schema
 
 from portray.exceptions import DocumentationAlreadyExists
 
@@ -169,7 +170,7 @@ def documentation_in_temp_folder(config: dict) -> Iterator[Tuple[str, str]]:
 
 
 def _mkdocs_config(config: dict) -> mkdocs_config.Config:
-    config_instance = mkdocs_config.Config(schema=mkdocs_config.defaults.get_schema())
+    config_instance = mkdocs_config.Config(schema=mkdocs_schema())
     config_instance.load_dict(config)
 
     errors, warnings = config_instance.validate()
